@@ -1,17 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { Container, Grid } from 'semantic-ui-react';
 import axios from 'axios';
+
+import Search from './component/Search';
+
 function App() {
   const [msg, setMsg] = useState('');
 
-  useEffect(async() => {
-    let response = await axios.get('/api/test');
-    setMsg(response.data);
+  useEffect(_ => {
+    axios
+      .get('/api/test')
+      .then(response => {
+        setMsg(response.data);
+      })
+      .catch(ex => {
+        console.error(ex);
+      });
   });
 
   return (
-    <div>
-      <p>Server says: {msg}</p>
-    </div>
+    <Container>
+      <Search />
+    </Container>
+
   );
 }
 
