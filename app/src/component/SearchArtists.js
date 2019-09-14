@@ -3,7 +3,7 @@ import { Grid, Search } from 'semantic-ui-react';
 import _ from 'lodash';
 import axios from 'axios';
 
-const SearchArtist = (e, {value}) => {
+const SearchArtists = () => {
   const [artists, setArtists] = useState([]);
 
   const getArtists = async (e, { value }) => {
@@ -33,4 +33,4 @@ const SearchArtist = (e, {value}) => {
   );
 };
 
-export default SearchArtist;
+export default SearchArtists;

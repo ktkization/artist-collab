@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Grid } from 'semantic-ui-react';
 
-import SearchArtist from './component/SearchArtist';
+import SearchArtists from './component/SearchArtists';
+import CollabedMusic from './component/CollabedMusic';
 
 function App() {
 
   return (
     <Container>
-      <SearchArtist />
+      <Grid>
+        <SearchArtists />
+        <CollabedMusic />
+      </Grid>
     </Container>
   );
 }
