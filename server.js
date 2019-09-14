@@ -1,21 +1,21 @@
-const express = require('express');
-const axios = require('axios');
-
 require('dotenv').config();
-
-const getApiUrl = searchQuery => {return `https://api.deezer.com/search/artist?q="${searchQuery}"`}
+const express = require('express');
+const{getArtist, getCollabedTracks} = require('./api-service');
 
 const app = express();
 
 app.get('/api/search', async (req, res) => {
   let searchQuery = req.query['name'];
-  let response = (await axios.get(getApiUrl(searchQuery))).data;
-  let artists = response.data.map( artist => {
-    return { key: artist.id, title: artist.name }
-  });  
+  let artists = await getArtist(searchQuery);
   res.json(artists);
 });
 
-app.listen(5000, _ => {
-  console.log('server running on port 5000');
+app.get('/api/collabos', async (req, res) => {
+  let [artistIdOne, artistIdTwo] = req.query['artistIds'].split(',');
+  let collabedTracks = await getCollabedTracks(artistIdOne, artistIdTwo);
+  res.json(collabedTracks);
+});
+
+app.listen(5000, () => {
+  console.log('Server running on port 5000');
 });
