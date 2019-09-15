@@ -8,7 +8,7 @@ const artistEndpoint = (id, limit = 200) => {
   return `https://api.deezer.com/artist/${id}/top?limit=${limit}`;
 };
 
-const getArtist = async searchQuery => {
+const getArtist = async (searchQuery) => {
   let response = (await axios.get(apiEndpoint(searchQuery))).data;
   let artists = response.data.map(artist => {
     return { key: artist.id, title: artist.name };
@@ -36,7 +36,7 @@ const getCollabedTracks = async (artistIdOne, artistIdTwo) => {
             s: track['cover_small'],
             m: track['cover_medium'],
             l: track['cover_big'],
-            xl: track['over_xl']
+            xl: track['cover_xl']
           }
         };
       }
