@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Search } from 'semantic-ui-react';
+import { Grid, Search, Segment, Button } from 'semantic-ui-react';
 import _ from 'lodash';
 import axios from 'axios';
+
+import './SearchArtists.css';
 
 const SearchArtists = () => {
   const [artists, setArtists] = useState([]);
@@ -12,24 +14,25 @@ const SearchArtists = () => {
   };
 
   return (
-    <Grid>
-      <Grid.Row columns={2}>
-        <Grid.Column>
+    <Segment className="search-container">
+      <Grid columns={3} stackable>
+        <Grid.Column stretched>
           <Search
-            fluid
             results={artists}
             onSearchChange={_.debounce(getArtists, 500)}
           />
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column stretched>
           <Search
-            fluid
             results={artists}
             onSearchChange={_.debounce(getArtists, 500)}
           />
         </Grid.Column>
-      </Grid.Row>
-    </Grid>
+        <Grid.Column stretched>
+          <Button className="search-btn" content="Search" size="large" />
+        </Grid.Column>
+      </Grid>
+    </Segment>
   );
 };
 
