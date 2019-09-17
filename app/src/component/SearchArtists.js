@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Search, Segment, Button } from 'semantic-ui-react';
 import _ from 'lodash';
 import axios from 'axios';
 
 import './SearchArtists.css';
 
-const SearchArtists = () => {
+const SearchArtists = ({ retrieveSelectedArtistIds }) => {
   const [loadingState, setLoadingState] = useState(false);
   const [artists, setArtists] = useState([]);
-  const [artistIds, setArtistIds] = useState([]);
+  const [selectedArtistIds, setSelectedArtistIds] = useState(new Set());
+
+  // useEffect(() => {
+
+  // }, [selectedArtistIds])
 
   const getArtists = async (e, { value }) => {
     setLoadingState(true);
@@ -17,9 +21,13 @@ const SearchArtists = () => {
     setLoadingState(false);
   };
 
-  const getSelectedArtist = async (e, { result }) => {
-    setArtistIds([...artistIds, {id: result.key, name: result.title}]);
-    console.log(artistIds);
+  const getSelectedArtist = (e, { result }) => {
+    setSelectedArtistIds(new Set([...[...selectedArtistIds], result.key]));
+  };
+
+  const sendArtistIds = e => {
+    e.preventDefault();
+    retrieveSelectedArtistIds([...selectedArtistIds]);
   };
 
   return (
@@ -42,7 +50,12 @@ const SearchArtists = () => {
           />
         </Grid.Column>
         <Grid.Column stretched>
-          <Button className="search-btn" content="Search" size="large" />
+          <Button
+            className="search-btn"
+            content="Search"
+            size="large"
+            onClick={sendArtistIds}
+          />
         </Grid.Column>
       </Grid>
     </Segment>
