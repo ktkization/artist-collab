@@ -11,7 +11,11 @@ const artistEndpoint = (id, limit = 200) => {
 const getArtist = async (searchQuery) => {
   let response = (await axios.get(apiEndpoint(searchQuery))).data;
   let artists = response.data.map(artist => {
-    return { key: artist.id, title: artist.name };
+    return {
+      key: artist.id,
+      title: artist.name,
+      image: artist.picture
+    };
   });
 
   return artists;
