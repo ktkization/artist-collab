@@ -33,15 +33,11 @@ const getCollabedTracks = async (artistIdOne, artistIdTwo) => {
       if (contributorIds.includes(parseInt(artistIdTwo))) {
         return {
           id: track.id,
-          title: track['title_short'],
+          title: track.title_short,
           link: track.link,
           sample: track.preview,
-          cover: {
-            s: track['cover_small'],
-            m: track['cover_medium'],
-            l: track['cover_big'],
-            xl: track['cover_xl']
-          }
+          album: track.album.title,
+          cover: track.album.cover_big
         };
       }
     })
