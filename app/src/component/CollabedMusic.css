@@ -1,0 +1,17 @@
+.deezer-link a img {
+    width: 25px;
+    vertical-align: middle;
+}
+
+.content .body .meta {
+    width: 55%;
+    float: left;
+}
+
+.content .body .description {
+    margin-left: 15%;
+}
+
+.content .body audio {
+    width: 400px;
+}

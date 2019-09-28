@@ -20,7 +20,9 @@ function App() {
       </div>
       <Container>
         <SearchArtists retrieveSelectedArtistIds={retrieveSelectedArtistIds} />
-        <CollabedMusic selectedArtistIds={selectedArtistIds} />
+        {selectedArtistIds.length > 0 && (
+          <CollabedMusic selectedArtistIds={selectedArtistIds} />
+        )}
       </Container>
     </React.Fragment>
   );
