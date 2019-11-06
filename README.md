@@ -1,11 +1,7 @@
-# artist-collab
-Find songs artists have collaborated on
-
-
-# Welcome to push-history (WIP) 🚧
+# artist-collab (WIP) 🚧
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 
-> A chrome extension for searching through your Pushbullet history
+> Find songs artists have collaborated on
 
 ## Install
 Clone repo
